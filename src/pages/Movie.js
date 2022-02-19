@@ -6,13 +6,15 @@ import './Movie.scss'
 
 const Movie = () => {
     const params = useParams()
-    const [movieWithActors, setMovieWithActors] = useState({"movie": {'genres': []}, 'actors': []})
+    const [movieWithActors, setMovieWithActors] = useState({"movie": {'genres': []}, 'actors': [], 'video': {}})
     
     useEffect(() => {
         MovieService
             .getMovie(params.id, 'movie').then(value => {
+                console.log(value)
                 setMovieWithActors(value)
             })
+          //  console.log(movieWithActors)
             
     }, [])
     
@@ -27,6 +29,15 @@ const Movie = () => {
                     <div>
                         {movieWithActors.movie.overview}
                     </div>
+                    <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${movieWithActors.video.key}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Embedded youtube"
+                    />
                     <Carousel data={movieWithActors.actors} />
                     <ul className='categories'>
                         {movieWithActors.movie.genres.map( 

@@ -12,14 +12,19 @@
     }
     .movie-content {
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         .categories {
             list-style: none;
             display: flex;
             gap: 10px;
             li {
-                background: red;
+                background: #6e6b6b;
                 border-radius: 6px;
                 padding: 5px 8px;
+                color: white;
+                font-weight: bold;
             }
         }
         
