@@ -1,0 +1,36 @@
+.carousel {
+    overflow: hidden;
+    position: relative;
+    .carousel-inner {
+        white-space: nowrap;
+        .carousel-item {
+            display: inline-flex;
+            width: 33.33%;
+            height: 200px;
+            /* background: blue; */
+            gap: 5px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        top: 0;
+        background: rgba(164, 156, 156, .8);
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        padding: 0 4px;
+        align-items: center;
+    }
+    .carousel-control-prev {
+        left: 0;
+    }
+    .carousel-control-next {
+        right: 0;
+        
+    }
+}

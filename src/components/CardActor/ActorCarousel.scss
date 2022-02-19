@@ -1,0 +1,23 @@
+.actors {
+    display: grid;
+    white-space: nowrap;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr;
+    .actor {
+        //width: 33.33%;
+        img {
+            width: 100%;
+        }
+    }
+    .carousel-control-prev {
+        position: absolute;
+        left: -15px;
+        top: 0;
+        width: 10px;
+        height: 100%;
+        background: #615858;
+        padding: 2px;
+        cursor: pointer;
+        color: white;
+    }
+}
