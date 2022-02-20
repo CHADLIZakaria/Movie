@@ -1,13 +1,14 @@
 .carousel {
     overflow: hidden;
     position: relative;
+    margin: 20px 0;
     .carousel-inner {
         white-space: nowrap;
+        transition: all .3s ease-in-out;
         .carousel-item {
             display: inline-flex;
             width: 33.33%;
             height: 200px;
-            /* background: blue; */
             gap: 5px;
             img {
                 width: 100%;

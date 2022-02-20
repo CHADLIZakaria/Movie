@@ -6,13 +6,21 @@ const Navbar = () => {
     return (
         <nav className='nav-movies'>
             <ul className='links'>
-                <li>
+                <li className='link'>
                     <Link to="/">
                         Trending
                     </Link> 
                 </li>
-                <li>Movies</li>
-                <li>Tv</li>
+                <li className='link'>
+                    <Link to="/movies">
+                        Movies
+                    </Link> 
+                </li>
+                <li className='link'>
+                    <Link to="/tvs">
+                        Tv
+                    </Link>
+                </li>
             </ul>
         </nav>
     )

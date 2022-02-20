@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import Carousel from '../components/Carousel/Carousel'
-import MovieService from '../services/MovieService'
+import { useLocation, useParams } from 'react-router-dom'
+import Carousel from '../../components/Carousel/Carousel'
+import MovieService from '../../services/MovieService'
 import './Movie.scss'
 
 const Movie = () => {
     const params = useParams()
+    const location = useLocation();
     const [movieWithActors, setMovieWithActors] = useState({"movie": {'genres': []}, 'actors': [], 'video': {}})
     
     useEffect(() => {
         MovieService
-            .getMovie(params.id, 'movie').then(value => {
-                console.log(value)
+            .getMovie(params.id, location.pathname.substring(1,location.pathname.lastIndexOf("/"))).then(value => {
                 setMovieWithActors(value)
             })
-          //  console.log(movieWithActors)
-            
     }, [])
     
     return (
@@ -38,7 +36,6 @@ const Movie = () => {
                     allowFullScreen
                     title="Embedded youtube"
                     />
-                    <Carousel data={movieWithActors.actors} />
                     <ul className='categories'>
                         {movieWithActors.movie.genres.map( 
                             (element) => 
@@ -47,6 +44,7 @@ const Movie = () => {
                     </ul>  
                 </div>
             </div>
+            <Carousel data={movieWithActors.actors} />
         </div>
     )
 }

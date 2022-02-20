@@ -31,3 +31,7 @@ ul {
       width: 1170px;
   }
 }
+
+body > div {
+  margin-top: 65px;
+}

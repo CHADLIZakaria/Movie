@@ -3,6 +3,7 @@
     margin: 30px 0;
     font-weight: bold;
     font-size: 35px;
+    color: white;
 }
 .movie {
     display: flex;
@@ -15,6 +16,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        color: #fff;
         .categories {
             list-style: none;
             display: flex;

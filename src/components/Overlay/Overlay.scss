@@ -1,0 +1,13 @@
+.overlay {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background: url(../../images/movie_background.jpg) rgba(128, 28, 28, 0.8);
+    background-size: cover;
+    background-blend-mode: multiply;
+    z-index: -1;
+    background-repeat: no-repeat;
+    left: 0;
+    top: 0;
+    opacity: .85;
+}

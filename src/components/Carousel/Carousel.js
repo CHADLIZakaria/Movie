@@ -5,7 +5,7 @@ import { faChevronLeft, faChevronRight, faIgloo } from '@fortawesome/free-solid-
 const Carousel = ({data}) => {
     const [currentIndex, setCurrentIndex] = useState(0)
     const updateCurrentIndex = (index) => {
-        if(index>=data.length)
+        if(index >= Math.ceil(data.length / 3))
             setCurrentIndex(0)
         else if(index===-1)
             setCurrentIndex(data.length-1)
@@ -21,10 +21,10 @@ const Carousel = ({data}) => {
                     </div>
                 ))}
             </div>
-            <div className='carousel-control-prev' onClick={() =>  updateCurrentIndex(currentIndex-3)}>
+            <div className='carousel-control-prev' onClick={() =>  updateCurrentIndex(currentIndex-1)}>
                 <FontAwesomeIcon icon={faChevronLeft} />
             </div>
-            <div className='carousel-control-next' onClick={() => updateCurrentIndex(currentIndex+3)}>
+            <div className='carousel-control-next' onClick={() => updateCurrentIndex(currentIndex+1)}>
                 <FontAwesomeIcon icon={faChevronRight} />
             </div>
         </div>
