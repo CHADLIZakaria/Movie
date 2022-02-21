@@ -61,13 +61,13 @@ const Movie = () => {
                 </h3>
                 <div className='tvs'>
                     {tv.seasons.map(season => (
-                        <div className='tv'>
+                        <div className='tv' key={season.id}>
                             <div className='tv-image'>
                                 <img src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`} alt='' />
                             </div>
                             <div className='tv-content'>
                                 <p>{season.name}</p>
-                                {season.episode_count}
+                                <p>{season.episode_count} episodes</p>
                             </div>
                         </div>
                     ))}   

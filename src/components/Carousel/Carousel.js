@@ -16,7 +16,7 @@ const Carousel = ({data}) => {
         <div className='carousel'>
             <div className='carousel-inner' style={{transform: `translateX(${-100 * currentIndex}%)`}}>
                 {data.map(actor => (
-                    <div className='carousel-item'>
+                    <div key={actor.id} className='carousel-item'>
                         <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} />
                     </div>
                 ))}

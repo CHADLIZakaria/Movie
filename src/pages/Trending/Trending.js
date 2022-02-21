@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import MovieService from '../../services/MovieService'
-import './Movies.scss'
+import './Trending.scss'
 
 const Movies = () => {
     const [movies, setMovies] = useState([])

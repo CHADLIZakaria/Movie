@@ -4,10 +4,9 @@ class MovieService {
     trendingMovie()  {
         return axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=daec360a48d3f2d487024c78a901cf46").then(value => value.data).catch(e => console.log(e))
     }
-    getMovies() {
+    getMovies(genres) {
         return axios.all([
-            axios
-                .get(`https://api.themoviedb.org/3/discover/movie?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`),
+            axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genres}`),
             axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US')
             ])
             .then(axios.spread((...responses) => {
@@ -15,8 +14,13 @@ class MovieService {
             }
             ))
     }
-    getTvs() {
-        return axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`).then(value => value.data).catch(e => console.log(e))
+    getTvs(genres) {
+        return axios.all([
+            axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genres}`),
+            axios.get('https://api.themoviedb.org/3/genre/tv/list?api_key=daec360a48d3f2d487024c78a901cf46&language=en-US')
+        ]).then(axios.spread((...responses) => {
+            return {tvs: responses[0].data, genres: responses[1].data.genres}
+        }))
     }
     
 
