@@ -12,7 +12,6 @@ const CardMovie = ({movie}) => {
     else {
         type=location.pathname.substring(1, location.pathname.length-1)
     }
-    //let type = location.pathname==='/' ? movie.media_type==='movie' ? 'movie': 'tv' : location.pathname
     
     return (
         <div className='card-movie' onClick={() => navigate(`/${type}/${movie.id}`)}>
