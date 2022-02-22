@@ -8,7 +8,7 @@ const ActorCarousel = ({actors}) => {
             
             {actors.map(actor =>
                 <div className='actor'>
-                    <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} />
+                    <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt='' />
                     <p>{actor.name}</p>
                 </div>
             )}

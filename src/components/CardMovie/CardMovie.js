@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './CardMovie.scss'
 const CardMovie = ({movie}) => {
@@ -15,7 +15,7 @@ const CardMovie = ({movie}) => {
     
     return (
         <div className='card-movie' onClick={() => navigate(`/${type}/${movie.id}`)}>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' />
             <div className='card-movie-content'>
                 <p className='title'>
                     {movie.title == null ? movie.name : movie.title}

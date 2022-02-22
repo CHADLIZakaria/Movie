@@ -18,7 +18,7 @@ const Movie = () => {
             })
         }
         else {
-            MovieService.getTv(params.id).then(value => {setTv(value.tv); console.log(value.tv)})
+            MovieService.getTv(params.id).then(value => setTv(value.tv))
         }
     }, [])
     
