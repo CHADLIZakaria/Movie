@@ -1,9 +1,11 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import CircularProgress from '../CircularProgress/CircularProgress'
 import './CardMovie.scss'
 const CardMovie = ({movie}) => {
     const navigate = useNavigate()
     const location = useLocation()
+    console.log(movie)
     let type=''
     if(location.pathname==='/') {
         if(movie.media_type==='movie') type='movie'
@@ -15,6 +17,7 @@ const CardMovie = ({movie}) => {
     
     return (
         <div className='card-movie' onClick={() => navigate(`/${type}/${movie.id}`)}>
+            <CircularProgress  />
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' />
             <div className='card-movie-content'>
                 <p className='title'>

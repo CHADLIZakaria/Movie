@@ -17,7 +17,6 @@ const Movies = () => {
 
     useEffect(() => {
         MovieService.getMovies(selectedGenre.join(','), currentPage).then(value => {
-            console.log(value)
             setMovies(value.movies.results)
             setCategories(value.categories.genres)
         })

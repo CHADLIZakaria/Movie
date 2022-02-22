@@ -2,7 +2,6 @@ import axios from "axios";
 
 class MovieService {
     trendingMovie(page)  {
-        console.log(page)
         return axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=daec360a48d3f2d487024c78a901cf46&page=${page}`).then(value => value.data).catch(e => console.log(e))
     }
     getMovies(genres, page) {

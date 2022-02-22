@@ -1,0 +1,50 @@
+.circle-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+} 
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 50%;
+}
+.circle-wrap .circle .mask {
+    clip: rect(0px, 50px, 50px, 75px);
+}
+.circle-wrap .inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #d2eaf1;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #1e51dc;
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+.mask .fill {
+    clip: rect(0px, 75px, 50px, 0px);
+    background-color: #227ded;
+}
+.mask.full,
+.circle .fill {
+    transform: rotate(120deg);
+} 
+
+@keyframes fill{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(135deg);
+    }
+} 
