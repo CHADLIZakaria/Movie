@@ -38,3 +38,11 @@ ul {
 body > div {
   margin-top: 65px;
 }
+
+
+.list-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  row-gap: 25px;
+  column-gap: 5px;
+}

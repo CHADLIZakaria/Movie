@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import Pagination from '../../components/Pagination/Pagination'
 import MovieService from '../../services/MovieService'
-import './Movies.scss'
-
 const Movies = () => {
     const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
@@ -16,6 +14,7 @@ const Movies = () => {
     
 
     useEffect(() => {
+        window.scroll(0, 0)
         MovieService.getMovies(selectedGenre.join(','), currentPage).then(value => {
             setMovies(value.movies)
             setCategories(value.categories.genres)

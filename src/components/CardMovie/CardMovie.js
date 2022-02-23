@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import CircularProgress from '../CircularProgress/CircularProgress'
 import './CardMovie.scss'
 const CardMovie = ({movie}) => {
+    console.log(movie)
     const navigate = useNavigate()
     const location = useLocation()
     let type=''
@@ -17,7 +18,7 @@ const CardMovie = ({movie}) => {
     return (
         <div className='card-movie' onClick={() => navigate(`/${type}/${movie.id}`)}>
             <CircularProgress vote={movie.vote_average}  />
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' />
+            <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt='' />
             <div className='card-movie-content'>
                 <p className='title'>
                     {movie.title == null ? movie.name : movie.title}

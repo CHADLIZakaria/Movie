@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import Pagination from '../../components/Pagination/Pagination'
+import Title from '../../components/Title/Title'
 import MovieService from '../../services/MovieService'
-import './Tv.scss'
 
 const Tv = () => {
     const [movies, setMovies] = useState({results: []})
@@ -15,12 +15,13 @@ const Tv = () => {
     }
 
     useEffect(() => {
+        window.scroll(0, 0)
         MovieService.getTvs(selectedGenre.join(',')).then(value => {
             setMovies(value.tvs)
             setCategories(value.genres)
         })
         
-    }, [selectedGenre])
+    }, [selectedGenre, currentPage])
     
     const filterMovies = (id) => {
         setCurrentPage(1)
@@ -32,7 +33,7 @@ const Tv = () => {
 
     return (
         <div className='container'>
-            <h3 className='movies-title'>Tv</h3>
+            <Title title={'Emission téléviser'}/>
             <div className='categories'>
                 {categories.map(category => 
                     <button key={category.id} className={`category  ${selectedGenre.includes(category.id) && 'active'}`} onClick={() => filterMovies(category.id)}>{category.name}</button>    

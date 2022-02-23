@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import Carousel from '../../components/Carousel/Carousel'
+import CircularProgress from '../../components/CircularProgress/CircularProgress'
 import MovieService from '../../services/MovieService'
 import './Movie.scss'
 
@@ -15,6 +16,7 @@ const Movie = () => {
             MovieService
             .getMovie(params.id, location.pathname.substring(1,location.pathname.lastIndexOf("/"))).then(value => {
                 setMovieWithActors(value)
+                console.log(value)
             })
         }
         else {
@@ -29,13 +31,24 @@ const Movie = () => {
                 <h3 className='movie-title'>{movieWithActors.movie.title}</h3>
                 <div className='movie'>
                     <div className='movie-image'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${movieWithActors.movie.poster_path}`} alt='' />
+                        <img src={`https://image.tmdb.org/t/p/w500/${movieWithActors.movie.backdrop_path}`} alt='' />
                     </div>
                     <div className='movie-content'>
-                        <div>
-                            {movieWithActors.movie.overview}
+                        <div className='movie-details'>
+                            <p>
+                                {movieWithActors.movie.release_date} {`${Math.floor(movieWithActors.movie.runtime/60)}h ${movieWithActors.movie.runtime%60}m`}
+                            </p>
                         </div>
-                        <iframe
+                        <div className='description'>
+                            <p>
+                                {movieWithActors.movie.overview}
+                                <CircularProgress vote={movieWithActors.movie.vote_average}/>
+                            
+                            </p>
+                            <p>
+                            </p>
+                        </div>
+                        {/* <iframe
                         width="100%"
                         height="100%"
                         src={`https://www.youtube.com/embed/${movieWithActors.video.key}`}
@@ -43,7 +56,7 @@ const Movie = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="Embedded youtube"
-                        />
+                        /> */}
                         <ul className='categories'>
                             {movieWithActors.movie.genres.map( 
                                 (element) => 

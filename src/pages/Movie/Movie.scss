@@ -17,14 +17,30 @@
         flex-direction: column;
         gap: 10px;
         color: #fff;
+        .description {
+            flex: 1;
+            position: relative;
+            .circle-wrap {
+                left: -42px;
+                top: 35px;
+                transform: scale(0.4);
+            }
+        }
+        .movie-details {
+            p:first-child {
+
+            }
+            p:last-child {
+                position: relative;
+
+            }
+            
+        }
         .categories {
             list-style: none;
             display: flex;
             gap: 10px;
             li {
-                background: #6e6b6b;
-                border-radius: 6px;
-                padding: 5px 8px;
                 color: white;
                 font-weight: bold;
             }

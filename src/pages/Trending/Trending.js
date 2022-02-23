@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import Pagination from '../../components/Pagination/Pagination'
+import Title from '../../components/Title/Title'
 import MovieService from '../../services/MovieService'
-import './Trending.scss'
 
 const Trending = () => {
     const [trending, setTrending] = useState({results: []})
@@ -23,7 +23,7 @@ const Trending = () => {
     
     return (
         <div className='container'>
-            <h3 className='movies-title'>TRENDING</h3>
+            <Title title={'Populaire'} />
             {isLoaded && 
                 <>
                     <div className='list-movies'>
