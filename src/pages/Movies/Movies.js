@@ -5,7 +5,7 @@ import MovieService from '../../services/MovieService'
 import './Movies.scss'
 
 const Movies = () => {
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
     const [selectedGenre, setSelectedGenre] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -17,12 +17,13 @@ const Movies = () => {
 
     useEffect(() => {
         MovieService.getMovies(selectedGenre.join(','), currentPage).then(value => {
-            setMovies(value.movies.results)
+            setMovies(value.movies)
             setCategories(value.categories.genres)
         })
     }, [selectedGenre, currentPage])
     
     const filterMovies = (id) => {
+        setCurrentPage(1)
         setSelectedGenre(
             selectedGenre.includes(id) ? 
                 selectedGenre.filter(genreId => genreId !== id) : 
@@ -38,9 +39,9 @@ const Movies = () => {
                 )}
             </div>
             <div className='list-movies'>
-                {movies.map(movie => (
+                {movies.results.map(movie => (
                     <CardMovie movie={movie} key={movie.id} />
-                    ))}
+                ))}
             </div>
             <Pagination totalPages = {movies.total_pages} handleClick={handleClick} page={currentPage} />
         </div>

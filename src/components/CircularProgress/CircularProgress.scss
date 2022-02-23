@@ -1,50 +1,53 @@
 .circle-wrap {
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
+    background: rgb(72 69 69 / 80%);
     border-radius: 50%;
+    transform: scale(0.3);
     position: absolute;
-    left: 0;
-    right: 0;
-} 
+    right: -53px;
+    bottom: -71px;
+    z-index: 1;
+}
+
 .circle-wrap .circle .mask,
 .circle-wrap .circle .fill {
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
     position: absolute;
     border-radius: 50%;
 }
-.circle-wrap .circle .mask {
-    clip: rect(0px, 50px, 50px, 75px);
+
+.mask .fill {
+    clip: rect(0px, 75px, 150px, 0px);
+    &.good {
+        background-color: #7fd479;
+    }
+    &.bad {
+        background-color: #d47979;
+    }
 }
+
+.circle-wrap .circle .mask {
+    clip: rect(0px, 150px, 150px, 74px);
+}
+
+.mask.full,
+.circle .fill {
+    transform: rotate(135deg);
+}
+
 .circle-wrap .inside-circle {
     width: 122px;
     height: 122px;
     border-radius: 50%;
-    background: #d2eaf1;
+    background: #7a7a7a;
     line-height: 120px;
     text-align: center;
     margin-top: 14px;
     margin-left: 14px;
-    color: #1e51dc;
     position: absolute;
     z-index: 100;
     font-weight: 700;
-    font-size: 2em;
+    font-size: 2.5em;
 }
-.mask .fill {
-    clip: rect(0px, 75px, 50px, 0px);
-    background-color: #227ded;
-}
-.mask.full,
-.circle .fill {
-    transform: rotate(120deg);
-} 
-
-@keyframes fill{
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(135deg);
-    }
-} 

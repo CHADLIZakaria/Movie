@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
+import Pagination from '../../components/Pagination/Pagination'
 import MovieService from '../../services/MovieService'
 import './Tv.scss'
 
 const Tv = () => {
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
     const [selectedGenre, setSelectedGenre] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    
+    const handleClick = (number) => {
+        setCurrentPage(number)
+    }
 
     useEffect(() => {
         MovieService.getTvs(selectedGenre.join(',')).then(value => {
-            setMovies(value.tvs.results)
+            setMovies(value.tvs)
             setCategories(value.genres)
         })
         
     }, [selectedGenre])
     
     const filterMovies = (id) => {
+        setCurrentPage(1)
         setSelectedGenre(
             selectedGenre.includes(id) ? 
                 selectedGenre.filter(genreId => genreId !== id) : 
@@ -32,10 +39,11 @@ const Tv = () => {
                 )}
             </div>
             <div className='list-movies'>
-                {movies.map(movie => (
+                {movies.results.map(movie => (
                     <CardMovie movie={movie} key={movie.id} />
                     ))}
             </div>
+            <Pagination totalPages = {movies.total_pages} handleClick={handleClick} page={currentPage} />
         </div>
     )
 }
