@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import Pagination from '../../components/Pagination/Pagination'
 import MovieService from '../../services/MovieService'
+import Movie from '../Movie/Movie'
 const Movies = () => {
     const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
@@ -15,10 +16,15 @@ const Movies = () => {
 
     useEffect(() => {
         window.scroll(0, 0)
-        MovieService.getMovies(selectedGenre.join(','), currentPage).then(value => {
-            setMovies(value.movies)
-            setCategories(value.categories.genres)
-        })
+        MovieService.getMovies(selectedGenre.join(','), currentPage)
+            .then(value => {
+                setMovies(value)
+            })
+            .then(() => 
+                MovieService.getCategories().then(data => {
+                    setCategories(data.genres)
+                    console.log(data)
+                }))
     }, [selectedGenre, currentPage])
     
     const filterMovies = (id) => {
@@ -28,10 +34,21 @@ const Movies = () => {
                 selectedGenre.filter(genreId => genreId !== id) : 
                 [...selectedGenre, id])
     }
+    const searchMovie = (e)  => {
+        e.preventDefault()
+        MovieService.searchMovie('tinder').then(value => {
+            setMovies(value.results)
+        })
+
+    }
 
     return (
         <div className='container'>
             <h3 className='movies-title'>MOVIES</h3>
+            {/* <form onClick={searchMovie}>
+                <input type="text" name="keyword" />
+                <button type="submit">Chercher</button>
+            </form> */}
             <div className='categories'>
                 {categories.map(category => 
                     <button key={category.id} className={`category  ${selectedGenre.includes(category.id) && 'active'}`} onClick={() => filterMovies(category.id)}>{category.name}</button>    

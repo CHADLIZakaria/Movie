@@ -20,7 +20,6 @@ const Movie = () => {
             MovieService
             .getMovie(params.id, location.pathname.substring(1,location.pathname.lastIndexOf("/"))).then(value => {
                 setMovieWithActors(value)
-                console.log(value)
             })
         }
         else {

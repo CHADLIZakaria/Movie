@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import CircularProgress from '../CircularProgress/CircularProgress'
 import './CardMovie.scss'
 const CardMovie = ({movie}) => {
-    console.log(movie)
     const navigate = useNavigate()
     const location = useLocation()
     let type=''

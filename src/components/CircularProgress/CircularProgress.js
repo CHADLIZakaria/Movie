@@ -2,7 +2,6 @@ import React from 'react'
 import './CircularProgress.scss'
 
 const CircularProgress = ({vote}) => {
-    console.log(vote)
     return (
         <div className="circle-wrap">
             <div className="circle">
