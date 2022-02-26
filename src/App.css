@@ -46,3 +46,35 @@ body > div {
   row-gap: 25px;
   column-gap: 5px;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  position: relative;
+}
+.header .movies-title {
+  flex: 1;
+}
+.form-search {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+} 
+.form-search input {
+  background: rgb(152 151 151 / 40%);
+  outline: 0;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 6px;
+}
+.form-search button[type="submit"] {
+  border: 1px solid #000;
+  background: rgba(180, 152, 152, 0.65);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}

@@ -1,39 +1,70 @@
 import React, { useEffect, useState } from 'react'
 import CardMovie from '../../components/CardMovie/CardMovie'
 import Pagination from '../../components/Pagination/Pagination'
-import Title from '../../components/Title/Title'
 import MovieService from '../../services/MovieService'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Tv = () => {
     const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
     const [selectedGenre, setSelectedGenre] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const [formChange, setFormChange] = useState({keyword:''})
     
     const handleClick = (number) => {
         setCurrentPage(number)
     }
 
+    const setCurrentChange = (e) => {
+        setFormChange({...formChange, [e.target.name]: e.target.value})
+    } 
+
+
     useEffect(() => {
         window.scroll(0, 0)
-        MovieService.getTvs(selectedGenre.join(',')).then(value => {
-            setMovies(value.tvs)
-            setCategories(value.genres)
-        })
+        if(formChange.keyword !== '') {
+            MovieService.searchMovie('tv', formChange.keyword, currentPage).then(
+                value => setMovies(value)
+            )
+        }
+        else {
+            MovieService.getTvs(selectedGenre.join(','), currentPage).then(value => {
+                console.log(value)
+                setMovies(value)
+            }).then(() => 
+                MovieService.getCategories('tv').then(data => setCategories(data.genres))
+            )
+        }
         
     }, [selectedGenre, currentPage])
     
     const filterMovies = (id) => {
         setCurrentPage(1)
+        setFormChange({...formChange, keyword: ''})
         setSelectedGenre(
             selectedGenre.includes(id) ? 
                 selectedGenre.filter(genreId => genreId !== id) : 
                 [...selectedGenre, id])
     }
 
+    const searchMovie = (e)  => {
+        e.preventDefault()
+        setSelectedGenre([])
+        MovieService.searchMovie('tv', formChange.keyword, currentPage).then(value => {
+            setMovies(value)
+        })
+    }
+
     return (
         <div className='container'>
-            <Title title={'Emission téléviser'}/>
+            <header className='header'>
+                <h3 className='movies-title'>Emission Téléviser</h3>
+                <form onSubmit={searchMovie} className='form-search'>
+                    <input type="text" name="keyword" onChange={setCurrentChange} value={formChange.keyword}/>
+                    <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /> </button>
+                </form>
+            </header>
             <div className='categories'>
                 {categories.map(category => 
                     <button key={category.id} className={`category  ${selectedGenre.includes(category.id) && 'active'}`} onClick={() => filterMovies(category.id)}>{category.name}</button>    
