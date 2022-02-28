@@ -6,6 +6,8 @@ import Movie from './pages/Movie/Movie';
 import Overlay from './components/Overlay/Overlay';
 import Trending from './pages/Trending/Trending';
 import Tv from './pages/Tv/Tv';
+import Season from './pages/Season/Season';
+import Seasons from './pages/Seasons/Seasons';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/tvs" element={<Tv />} />
         <Route path="/movie/:id" element={<Movie />} />
-        <Route path="/tv/:id" element={<Movie />} />
+        <Route path="/tv/:id" element={<Seasons />} />
+        <Route path="/tv/:id/season/:seasonNumber" element={<Season />} />
+        
       </Routes>
     </Router>
   );

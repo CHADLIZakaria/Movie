@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import CardMovie from '../../components/CardMovie/CardMovie'
-import Pagination from '../../components/Pagination/Pagination'
-import MovieService from '../../services/MovieService'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import CardWithTitle from '../../components/CardWithTitle/CardWithTitle'
+import Pagination from '../../components/Pagination/Pagination'
+import MovieService from '../../services/MovieService'
 const Movies = () => {
     const [movies, setMovies] = useState({results: []})
     const [categories, setCategories]= useState([])
     const [selectedGenre, setSelectedGenre] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [formChange, setFormChange] = useState({keyword:''})
+    const navigate = useNavigate()
     
     const handleClick = (number) => {
         setCurrentPage(number)
@@ -62,8 +64,7 @@ const Movies = () => {
                     <input  type="text" 
                             name="keyword" 
                             onChange={setCurrentChange} 
-                            value={formChange.keyword} 
-                            placeholder='Entrer un keyword'/>
+                            value={formChange.keyword} />
                     <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /> </button>
                 </form>
             </header>
@@ -75,7 +76,13 @@ const Movies = () => {
             </div>
             <div className='list-movies'>
                 {movies.results.map(movie => (
-                    <CardMovie movie={movie} key={movie.id} />
+                    <CardWithTitle 
+                        title={movie.title == null ? movie.name : movie.title} 
+                        image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                        note={movie.vote_average}
+                        subtitle={movie.overview} 
+                        onClick={() => navigate(`/movie/${movie.id}`)}
+                        />
                 ))}
             </div>
             <Pagination totalPages = {movies.total_pages} handleClick={handleClick} page={currentPage} />

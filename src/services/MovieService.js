@@ -39,5 +39,8 @@ class MovieService {
             return {tv: responses[0].data}
         }))                         
     }
+    getSeason(id, seasonNumber) {
+        return axios.get(`https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}?api_key=daec360a48d3f2d487024c78a901cf46&&language=en-US`).then(value => value.data).catch(e => console.log(e))
+    }
 }
 export default new MovieService()
