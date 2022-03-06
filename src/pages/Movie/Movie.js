@@ -47,11 +47,9 @@ const Movie = () => {
                                 <NumberFormat value= {movieWithActors.movie.revenue === 0 ? '_' : movieWithActors.movie.revenue} prefix={'$'}  thousandSeparator={true} displayType={'text'} />
                             </li>
                         </ul>
-                        
                         <button className='btn-trailer' onClick={() => setshowTrailer(true)}><FontAwesomeIcon icon={faPlay} /> Bande annonce</button>
                     </div>
-
-                    <ul className='categories'>
+                    <ul className='movies-categories'>
                         {movieWithActors.movie.genres.map( 
                             (element) => 
                             <li key={element.id}>{element.name}</li>

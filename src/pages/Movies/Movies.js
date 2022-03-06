@@ -68,22 +68,24 @@ const Movies = () => {
                     <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /> </button>
                 </form>
             </header>
-            
-            <div className='categories'>
-                {categories.map(category => 
-                    <button key={category.id} className={`category  ${selectedGenre.includes(category.id) && 'active'}`} onClick={() => filterMovies(category.id)}>{category.name}</button>    
-                )}
-            </div>
-            <div className='list-movies'>
-                {movies.results.map(movie => (
-                    <CardWithTitle 
+            <div className='wrapper-content'>
+                <div className='categories'>
+                    {categories.map(category => 
+                        <button key={category.id} className={`category  ${selectedGenre.includes(category.id) && 'active'}`} onClick={() => filterMovies(category.id)}>{category.name}</button>    
+                    )}
+                </div>
+                <div className='list-movies'>
+                    {movies.results.map(movie => (
+                        <CardWithTitle 
+                        key={movie.id}
                         title={movie.title == null ? movie.name : movie.title} 
                         image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                         note={movie.vote_average}
                         subtitle={movie.overview} 
                         onClick={() => navigate(`/movie/${movie.id}`)}
                         />
-                ))}
+                        ))}
+                </div>
             </div>
             <Pagination totalPages = {movies.total_pages} handleClick={handleClick} page={currentPage} />
         </div>

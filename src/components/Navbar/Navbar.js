@@ -18,7 +18,7 @@ const Navbar = () => {
                 </li>
                 <li className='link'>
                     <Link to="/tvs">
-                        Tv
+                        Emission Téléviser
                     </Link>
                 </li>
             </ul>

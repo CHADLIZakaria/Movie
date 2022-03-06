@@ -10,8 +10,7 @@ const Season = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(params.id+" "+params.seasonNumber)
-        MovieService.getSeason(params.id, params.seasonNumber).then(value => {setSeason(value); console.log(value)})
+        MovieService.getSeason(params.id, params.seasonNumber).then(value => setSeason(value))
     }, [])
     
     return (
@@ -19,6 +18,7 @@ const Season = () => {
             <div className='episodes'>
                 {season.episodes.map(episode => (
                     <CardWithTitle 
+                        key={episode.id}
                         title={`Episode ${episode.episode_number} ${episode.name==='Episode '+episode.episode_number ? '': episode.name}`}
                         subtitle={episode.overview}
                         note={episode.vote_average}

@@ -11,7 +11,7 @@ const Seasons = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        MovieService.getTv(params.id).then(value => {console.log(value.tv); setTv(value.tv)}) 
+        MovieService.getTv(params.id).then(value => setTv(value.tv)) 
     }, [])
     
     return (
@@ -23,6 +23,7 @@ const Seasons = () => {
                 <div className='seasons'>
                     {tv.seasons.map(season => (
                         <BasicCard 
+                            key={season.id}
                             title={season.name}
                             subtitle={`Nombre d'épisode ${season.episode_count}`}
                             image={`https://image.tmdb.org/t/p/w300/${season.poster_path}`}

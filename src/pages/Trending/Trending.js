@@ -31,6 +31,7 @@ const Trending = () => {
                     <div className='list-movies'>
                         {trending.results.map(movie => (
                             <CardWithTitle 
+                                key={movie.id}
                                 title={movie.title == null ? movie.name : movie.title} 
                                 image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                                 note={movie.vote_average}
